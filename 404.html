@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<title>Redirecting…</title>
+<body>
+  <p>Redirecting…</p>
+  <script>
+    (function() {
+      var oldHost = "pbs-assess.github.io";
+      var newHost = "sdmTMB.github.io";
+
+      // Only redirect sdmTMB paths; other 404s can be handled normally
+      if (window.location.pathname.startsWith("/sdmTMB/")) {
+        // Replace host but keep path, query, and hash
+        var newUrl = window.location.href.replace(oldHost, newHost);
+        window.location.replace(newUrl);
+      }
+    })();
+  </script>
+</body>
