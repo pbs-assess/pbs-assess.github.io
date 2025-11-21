@@ -1,19 +1,42 @@
 <!DOCTYPE html>
+<html lang="en">
 <meta charset="utf-8">
 <title>Redirecting…</title>
+
 <body>
   <p>Redirecting…</p>
+
   <script>
-    (function() {
+    (function () {
+
+      // Old and new hostnames
       var oldHost = "pbs-assess.github.io";
       var newHost = "sdmTMB.github.io";
 
-      // Only redirect sdmTMB paths; other 404s can be handled normally
-      if (window.location.pathname.startsWith("/sdmTMB/")) {
-        // Replace host but keep path, query, and hash
+      var path = window.location.pathname;
+
+      // List of project paths to redirect
+      var redirectPrefixes = [
+        "/sdmTMB/",
+        "/sdmTMB-teaching/",
+        "/sdmTMBextra/",
+        "/sdmTMB-TESA-2025/"
+      ];
+
+      // Check whether the current path begins with any redirect prefix
+      var shouldRedirect = redirectPrefixes.some(function (prefix) {
+        return path.startsWith(prefix);
+      });
+
+      if (shouldRedirect) {
+        // Replace only the hostname; preserve everything else
         var newUrl = window.location.href.replace(oldHost, newHost);
         window.location.replace(newUrl);
       }
+
+      // Otherwise do nothing: a normal GitHub 404 will show.
     })();
   </script>
+
 </body>
+</html>
